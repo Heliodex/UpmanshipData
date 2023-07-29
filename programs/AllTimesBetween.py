@@ -8,7 +8,10 @@ from pandas import read_csv
 matplotlib.rcParams['font.family'] = "Readex Pro"
 
 
-def write(fileRaw: str, file: str, outDir: str):
+def write(fileRaw: str, outDir: str):
+    if not fileRaw:
+        return
+
     table = read_csv(fileRaw, sep="\t")
 
     out = open(f"{outDir}/AllTimesBetween.txt", "w+", encoding="utf-8")

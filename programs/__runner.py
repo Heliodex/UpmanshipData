@@ -23,38 +23,38 @@ outDir = "./data"
 if not os.path.exists(outDir):
     os.makedirs(outDir)
 
-AllTimesBetween.write(fileRaw, file, outDir)
+AllTimesBetween.write(fileRaw, outDir)
 print("AllTimesBetween done!")
 
-EvenOddRatio.write(fileRaw, file, outDir)
+EvenOddRatio.write(file, outDir)
 print("EvenOddRatio done!")
 
-FirstAppeareance.write(fileRaw, file, outDir)
+FirstAppeareance.write(fileRaw, outDir)
 print("FirstAppeareance done!")
 
-LastAppearance.write(fileRaw, file, outDir)
+LastAppearance.write(fileRaw, outDir)
 print("LastAppearance done!")
 
-LargestPortion.write(fileRaw, file, outDir)
+LargestPortion.write(fileRaw, outDir)
 print("LargestPortion done!")
 
-LongestHiatusSeconds.write(fileRaw, file, outDir)
+LongestHiatusSeconds.write(fileRaw, outDir)
 print("LongestHiatusSeconds done!")
 
-LongestHiatusUpmanships.write(fileRaw, file, outDir)
+LongestHiatusUpmanships.write(fileRaw, outDir)
 print("LongestHiatusUpmanships done!")
 
-ShortestTimesBetween.write(fileRaw, file, outDir)
+ShortestTimesBetween.write(fileRaw, outDir)
 print("ShortestTimesBetween done!")
 
-ShortestTimesBetweenX.write(fileRaw, file, outDir)
+ShortestTimesBetweenX.write(fileRaw, outDir)
 print("ShortestTimesBetweenX done!")
 
-TotalKarmaGained.write(fileRaw, file, outDir)
+TotalKarmaGained.write(fileRaw, outDir)
 print("TotalKarmaGained done!")
 
-TotalUpmanships.write(fileRaw, file, outDir)
+TotalUpmanships.write(fileRaw, outDir)
 print("TotalUpmanships done!")
 
-TotalXUpmanships.write(fileRaw, file, outDir)
+TotalXUpmanships.write(file, outDir)
 print("TotalXUpmanships done!")

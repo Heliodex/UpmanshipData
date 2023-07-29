@@ -5,7 +5,10 @@ from pandas import read_csv
 from statistics import mean
 
 
-def write(fileRaw: str, file: str, outDir: str):
+def write(fileRaw: str, outDir: str):
+    if not fileRaw:
+        return
+
     table = read_csv(fileRaw, sep="\t")
 
     deltatime = []

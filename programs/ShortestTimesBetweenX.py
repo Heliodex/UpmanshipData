@@ -4,7 +4,10 @@
 from pandas import read_csv
 
 
-def write(fileRaw: str, file: str, outDir: str):
+def write(fileRaw: str, outDir: str):
+    if not fileRaw:
+        return
+
     table = read_csv(fileRaw, sep="\t")
 
     for x in range(0, 5):

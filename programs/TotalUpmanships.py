@@ -2,11 +2,18 @@
 # Last edited 2022/12/11 -- Format output even bettrer
 # i accidentally deleted this program, also fix nans
 
+import matplotlib
 import matplotlib.pyplot as plt
 from pandas import read_csv
 
+matplotlib.rcParams["text.color"] = "w"
+matplotlib.rcParams["savefig.facecolor"] = "k"
 
-def write(fileRaw: str, file: str, outDir: str):
+
+def write(fileRaw: str, outDir: str):
+    if not fileRaw:
+        return
+
     table = read_csv(fileRaw, sep="\t")
 
     out = open(f"{outDir}/TotalUpmanships.md", "w+", encoding="utf-8")

@@ -4,7 +4,10 @@
 from pandas import read_csv
 
 
-def write(fileRaw: str, file: str, outDir: str):
+def write(fileRaw: str, outDir: str):
+    if not fileRaw:
+        return
+
     table = read_csv(fileRaw, sep="\t")
 
     out = open(f"{outDir}/LastAppearance.md", "w+", encoding="utf-8")
