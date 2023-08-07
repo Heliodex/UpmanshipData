@@ -15,12 +15,12 @@ def write(fileRaw: str, outDir: str):
 
     prevAuthor = ""
     for i in range(len(table)):
-        a = table["author"][i]
-        pair = f"{prevAuthor} {a}"
+        currentAuthor = table["author"][i]
+        pair = f"{prevAuthor} {currentAuthor}"
         if prevAuthor:
             pairs.update({pair: (pairs.get(pair) or 0) + 1})
 
-        prevAuthor = a
+        prevAuthor = currentAuthor
 
     out.write("**Commenter**|**Replied**|**Count**\n:-|:-|-:\n")
 

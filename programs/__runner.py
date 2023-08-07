@@ -8,8 +8,9 @@ import TotalUpmanships
 import TotalKarmaGained
 import ShortestTimesBetweenX
 import ShortestTimesBetween
-import LongestHiatusUpmanships
 import LongestHiatusSeconds
+import LongestHiatusUpmanships
+import LongestRun
 import LargestPortion
 import LastAppearance
 import FirstAppeareance
@@ -43,6 +44,9 @@ print("LongestHiatusSeconds done!")
 
 LongestHiatusUpmanships.write(fileRaw, outDir)
 print("LongestHiatusUpmanships done!")
+
+LongestRun.write(fileRaw, outDir)
+print("LongestRun done!")
 
 ShortestTimesBetween.write(fileRaw, outDir)
 print("ShortestTimesBetween done!")

@@ -29,7 +29,7 @@ def write(fileRaw: str, outDir: str):
 
     deltatime = sorted(deltatime)
 
-    out.write("|**Username**|**Fastest time (seconds)**|**Comment ID**|\n:-|-:|:-\n")
+    out.write("|**Username**|**Fastest time (seconds)**|**Comment id**|\n:-|-:|:-\n")
 
     for i in range(len(deltatime)):
         deltatime[i][0], deltatime[i][1] = deltatime[i][1], deltatime[i][0]
