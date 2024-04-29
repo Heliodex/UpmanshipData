@@ -1,0 +1,45 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"formatter": {
+		"indentWidth": 4
+	},
+	"linter": {
+		"rules": {
+			"nursery": {
+				"all": true,
+				"noUndeclaredDependencies": "off",
+				"noNodejsModules": "off",
+				"noConsole": "off"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"semicolons": "asNeeded",
+			"trailingComma": "es5",
+			"arrowParentheses": "asNeeded"
+		}
+	},
+	"overrides": [
+		{
+			"include": ["*.svelte"],
+			"linter": {
+				"rules": {
+					"style": {
+						"useConst": "off"
+					},
+					"correctness": {
+						"noUnusedLabels": "off"
+					},
+					"suspicious": {
+						"noConfusingLabels": "off",
+						"noImplicitAnyLet": "off"
+					},
+					"nursery": {
+						"noEvolvingAny": "off"
+					}
+				}
+			}
+		}
+	]
+}
