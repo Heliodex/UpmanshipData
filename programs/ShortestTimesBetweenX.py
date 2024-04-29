@@ -30,7 +30,8 @@ def write(fileRaw: str, outDir: str):
 
         deltatime = sorted(deltatime)
 
-        out.write(f"**Starting id**|**Ending id**|**Time (seconds)**\n")
+        out.write(f"**Starting id**|**Ending id**|**Time (seconds)**\n:-|-:|:-\n")
+
         for i in range(len(deltatime)):
             deltatime[i][0], deltatime[i][1] = deltatime[i][1], deltatime[i][0]
             out.write(f"{deltatime[i][0]}|{deltatime[i][1]}" + "\n")

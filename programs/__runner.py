@@ -2,6 +2,7 @@
 # Last edited 2023/07/29 -- make less awful
 
 import os
+from time import time
 
 import TotalXUpmanships
 import TotalUpmanships
@@ -17,9 +18,11 @@ import FirstAppeareance
 import EvenOddRatio
 import AllTimesBetween
 
-fileRaw = "./raw30k.tsv"
-file = "./30k.tsv"
+fileRaw = "./other/oneupmanshipRaw.tsv"
+file = "./other/oneupmanship.tsv"
 outDir = "./data"
+
+start = time()
 
 if not os.path.exists(outDir):
     os.makedirs(outDir)
@@ -62,3 +65,5 @@ print("TotalUpmanships done!")
 
 TotalXUpmanships.write(file, outDir)
 print("TotalXUpmanships done!")
+
+print(f"Time to complete: {str(time() - start)} seconds")
