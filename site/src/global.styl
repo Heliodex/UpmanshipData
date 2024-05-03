@@ -1,9 +1,35 @@
+@font-face
+	font-family "Lexend Deca"
+	src url("/Lexend.woff2") format("woff2")
+	font-display swap
+
 body
 	margin 0 auto
 	padding 3rem 1rem
-	background #ddd
-	width 62.5rem
-	font-family "Lexend"
+	background #111
+	color white
+	max-width 62.5rem
+
+a
+	@apply transition-colors text-indigo-5
+
+	&:hover
+		@apply text-indigo-3
+		@media (prefers-color-scheme: light)
+			@apply text-indigo-7
+	&:active
+		@apply text-indigo-6
+		@media (prefers-color-scheme: light)
+			@apply text-indigo-4
+
+@media (prefers-color-scheme: light)
+	body
+		background #ddd
+		color black
+
+*
+	font-family "Lexend Deca", sans-serif
+	box-sizing border-box
 
 button
 	@apply transition

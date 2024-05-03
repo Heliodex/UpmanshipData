@@ -43,6 +43,7 @@ type Comments = {
 		link: string
 	}[]
 }
+
 export const commentsPerUser = parsed.reduce((acc, c) => {
 	acc[c.author] = (acc[c.author] || []).concat({
 		body: c.body,
@@ -51,6 +52,12 @@ export const commentsPerUser = parsed.reduce((acc, c) => {
 	})
 	return acc
 }, {} as Comments)
+
+// Number of comments from all users except the top 25
+export const othersCount: number = Object.values(userCommentCount)
+	.sort((a, b) => b - a)
+	.slice(25)
+	.reduce((a, b) => a + b, 0)
 
 export const userQuotes: {
 	[k: string]: [string, string?]

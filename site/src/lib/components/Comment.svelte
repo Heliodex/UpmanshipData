@@ -38,7 +38,7 @@
 	</div>
 	<div
 		bind:this={div}
-		class="w-full whitespace-pre-wrap bg-white p-2 px-3 rounded-1 shadow-inner shadow-black/30">
+		class="w-full whitespace-pre-wrap bg-neutral-8 @light:bg-white p-2 px-3 rounded-1 shadow-inner shadow-black/30">
 		{#await parse(comment.body)}
 			Loading...
 		{:then body}
