@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { page } from "$app/stores"
+	import { browser } from "$app/environment"
 	import { goto } from "$app/navigation"
+	import { page } from "$app/stores"
 	import randomColour from "$lib/rand"
 	import {
 		totalComments,
@@ -23,7 +24,9 @@
 		.map((_, i) => randomColour(data[i][0]))
 		.concat("#333")
 
-	let currentUser = $derived($page.url.searchParams.get("user") || "")
+	let currentUser = $derived(
+		browser ? $page.url.searchParams.get("user") || "" : ""
+	)
 	let commentsVisible = $state(20)
 	let chartType = $state<"linear" | "logarithmic" | "pie">("logarithmic")
 	let loading = $state(true)
@@ -110,7 +113,7 @@
 					? {}
 					: {
 							x: { type: chartType },
-							y: { grid: { color: "transparent" } },
+							y: { grid: { color: "transparent" } }
 						},
 			borderColor: "transparent"
 		}}
