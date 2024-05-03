@@ -1,7 +1,8 @@
 import adapter from "@sveltejs/adapter-static"
 import preprocess from "svelte-preprocess"
+import { defineConfig } from "vite"
 
-export default {
+export default defineConfig({
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
 	preprocess: preprocess(),
@@ -18,4 +19,4 @@ export default {
 			toggleKeyCombo: "control-i",
 		},
 	},
-}
+})
