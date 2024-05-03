@@ -6,11 +6,15 @@
 		comment,
 		addVisible
 	}: {
-		comment: string
+		comment: {
+			body: string
+			score: number
+			link: string
+		}
 		addVisible: () => void
 	} = $props()
 
-	let li: HTMLLIElement
+	let div: HTMLDivElement
 
 	$effect(() => {
 		const observer = new IntersectionObserver(async e => {
@@ -18,19 +22,29 @@
 			addVisible()
 		})
 
-		observer.observe(li)
+		observer.observe(div)
 		return () => observer.disconnect()
 	})
 </script>
 
-<li
-	bind:this={li}
-	class="whitespace-pre-wrap bg-white p-2 px-3 rounded-1 shadow-inner shadow-black/30">
-	{#await parse(comment)}
-		Loading...
-	{:then body}
-		{@html DOMPurify.sanitize(body, {
-			USE_PROFILES: { html: true }
-		})}
-	{/await}
-</li>
+<div class="flex gap-3">
+	<div class="w-12">
+		<a href={comment.link} target="_blank" rel="noopener noreferrer">
+			<small>Link</small>
+		</a>
+		<p class="text-red-7 pt-2">
+			{comment.score}
+		</p>
+	</div>
+	<div
+		bind:this={div}
+		class="w-full whitespace-pre-wrap bg-white p-2 px-3 rounded-1 shadow-inner shadow-black/30">
+		{#await parse(comment.body)}
+			Loading...
+		{:then body}
+			{@html DOMPurify.sanitize(body, {
+				USE_PROFILES: { html: true }
+			})}
+		{/await}
+	</div>
+</div>

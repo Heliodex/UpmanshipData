@@ -10,8 +10,14 @@ const getCache = () =>
 const setCache = (cache: Map<string, string>) =>
 	localStorage.setItem("pfpCache", JSON.stringify(Object.fromEntries(cache)))
 
+const userOverrides: { [k: string]: string } = {
+	"[deleted]": "",
+	fourteensquares: "/fourteensquares.png",
+}
+
 export default async (username: string) => {
-	if (username === "[deleted]") return ""
+	if (userOverrides[username]) return userOverrides[username]
+
 	const cache = getCache()
 	if (cache.has(username)) return cache.get(username)
 

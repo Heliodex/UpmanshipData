@@ -2,7 +2,12 @@
 	import { page } from "$app/stores"
 	import { goto } from "$app/navigation"
 	import randomColour from "$lib/rand"
-	import { userCommentCount, commentsPerUser, userQuotes } from "$lib/data"
+	import {
+		totalComments,
+		userCommentCount,
+		commentsPerUser,
+		userQuotes
+	} from "$lib/data"
 	import getAvatar from "$lib/avatar"
 	import Chart from "$lib/components/Chart.svelte"
 	import Comment from "$lib/components/Comment.svelte"
@@ -15,9 +20,16 @@
 	let commentsVisible = $state(20)
 	let chartType = $state<"linear" | "logarithmic">("logarithmic")
 	let loading = $state(true)
+
+	let sortAsc = $state(true)
+	let comments = $derived(
+		sortAsc
+			? commentsPerUser[currentUser]
+			: commentsPerUser[currentUser].slice().reverse()
+	)
 </script>
 
-<h1 class="pb-6">
+<h1>
 	<a
 		href="https://reddit.com/r/oneupmanship"
 		target="_blank"
@@ -26,6 +38,12 @@
 	</a>
 	statistics
 </h1>
+
+<p class="pt-2 pb-6">
+	{totalComments} total comments
+	&mdash;
+	{Object.keys(userCommentCount).length} unique users
+</p>
 
 {#if loading}
 	<p>Loading...</p>
@@ -96,9 +114,7 @@
 					if (index === undefined) return // dynamic typing trap
 					const label = chart.data.labels?.[index]?.toString() || ""
 
-					console.log(currentUser, label)
-					if (currentUser === label) goto("?")
-					else goto(`?user=${label}`)
+					goto(currentUser === label ? "?" : `?user=${label}`)
 
 					commentsVisible = 20
 				}
@@ -106,7 +122,7 @@
 		]} />
 {/key}
 
-{#if !loading && currentUser && typeof currentUser === "string"}
+{#if !loading && currentUser && typeof currentUser === "string" && comments}
 	<div class="flex items-center">
 		{#await getAvatar(currentUser)}
 			<div class="size-12"></div>
@@ -144,10 +160,25 @@
 		<p>{userCommentCount[currentUser]} total comments</p>
 	</div>
 
-	<h3>Comments</h3>
-	<ul class="flex flex-col gap-3">
+	<h3 class="flex gap-3 pb-4">
+		Comments
+
+		<button
+			class="bg-blue-5 text-white p-0.5 px-1 rounded-1 hover:bg-blue-6 text-sm"
+			onclick={() => {
+				commentsVisible = 20
+				sortAsc = !sortAsc
+			}}>
+			{#if sortAsc}
+				Sort by newest
+			{:else}
+				Sort by oldest
+			{/if}
+		</button>
+	</h3>
+	<div class="flex flex-col gap-3">
 		{#key currentUser}
-			{#each commentsPerUser[currentUser].slice(0, commentsVisible) as comment}
+			{#each comments.slice(0, commentsVisible) as comment}
 				<Comment
 					{comment}
 					addVisible={() => {
@@ -155,5 +186,5 @@
 					}} />
 			{/each}
 		{/key}
-	</ul>
+	</div>
 {/if}
