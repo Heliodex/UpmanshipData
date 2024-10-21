@@ -1,11 +1,11 @@
 import adapter from "@sveltejs/adapter-static"
-import preprocess from "svelte-preprocess"
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte"
 import { defineConfig } from "vite"
 
 export default defineConfig({
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
-	preprocess: preprocess(),
+	preprocess: vitePreprocess(),
 
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import "uno.css"
-	import "../global.styl"
+	import "../global.css"
 
 	const { children } = $props()
 </script>

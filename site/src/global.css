@@ -1,0 +1,61 @@
+@font-face {
+	font-family: "Lexend Deca";
+	src: url("/Lexend.woff2") format("woff2");
+	font-display: swap;
+}
+
+* {
+	font-family: "Lexend Deca", sans-serif;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0 auto;
+	padding: 3rem 1rem;
+	max-width: 62.5rem;
+
+	background: #111;
+	color: #fff;
+	@media (prefers-color-scheme: light) {
+		background: #ddd;
+		color: #000;
+	}
+}
+
+a {
+	@apply transition-colors text-indigo-5;
+
+	&:hover {
+		@apply text-indigo-3;
+		@media (prefers-color-scheme: light) {
+			@apply text-indigo-7;
+		}
+	}
+	&:active {
+		@apply text-indigo-6;
+		@media (prefers-color-scheme: light) {
+			@apply text-indigo-4;
+		}
+	}
+}
+
+button {
+	@apply transition;
+	font-size: inherit;
+	font-family: inherit;
+	border: 0;
+	cursor: pointer;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+}
+h2 {
+	font-size: 1.4rem;
+}
