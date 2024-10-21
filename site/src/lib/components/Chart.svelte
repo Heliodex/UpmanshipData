@@ -6,14 +6,14 @@
 		type ChartTypeRegistry
 	} from "chart.js"
 
-	const {
+	let {
 		type,
 		data,
 		options,
 		plugins,
-		finishedLoading
+		loading = $bindable()
 	}: ChartConfiguration<keyof ChartTypeRegistry, unknown, unknown> & {
-		finishedLoading: () => void
+		loading: boolean
 	} = $props()
 
 	Chart.register(...registerables)
@@ -30,12 +30,10 @@
 			"(prefers-color-scheme: light)"
 		).matches
 		Chart.defaults.color = lightTheme ? "black" : "white"
-		Chart.defaults.scale.grid.color = lightTheme
-			? "#0002"
-			: "#fff2"
+		Chart.defaults.scale.grid.color = lightTheme ? "#0002" : "#fff2"
 
 		new Chart(canvas, { type, data, options, plugins })
-		finishedLoading()
+		loading = false
 	})
 </script>
 

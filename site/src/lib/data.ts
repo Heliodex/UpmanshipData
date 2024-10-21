@@ -36,6 +36,16 @@ export const userCommentCount: {
 	{} as { [key: string]: number }
 )
 
+export const userUpvoteCount: {
+	[key: string]: number
+} = parsed.reduce(
+	(acc, c) => {
+		acc[c.author] = (acc[c.author] || 0) + c.score
+		return acc
+	},
+	{} as { [key: string]: number }
+)
+
 type Comments = {
 	[key: string]: {
 		body: string
@@ -59,12 +69,14 @@ export const othersCount: number = Object.values(userCommentCount)
 	.slice(25)
 	.reduce((a, b) => a + b, 0)
 
-export const userQuotes: {
-	[k: string]: [string, string?]
-} = {
+export const userQuotes: { [k: string]: [string, string?] } = {
 	HelioDex: [
 		"I'm not a robot",
 		"https://reddit.com/r/oneupmanship/comments/pfvval/comment/hb736f8",
+	],
+	Art_Vandelay_10: [
+		"Onward to 69420!",
+		"https://www.reddit.com/r/AskReddit/comments/os4u1w/comment/h72ua3z/",
 	],
 	amazingpikachu_38: ["{:}"],
 	Vlajd: [
@@ -72,9 +84,13 @@ export const userQuotes: {
 		"https://www.reddit.com/r/AskReddit/comments/os4u1w/comment/h6ookse/",
 	],
 	"Dijit-Datez": ["Statistics King"],
+	JackSaysHello: [
+		"Hello!",
+		"https://www.reddit.com/r/AskReddit/comments/b2qry1/comment/eiuy02c/",
+	],
 	"Trial-Name": ["r\\counting"],
 	arthursadultdiaper: [
 		"One up manship",
-		"https://www.reddit.com/r/AskReddit/comments/os4u1w/comment/h6m6nps",
+		"https://www.reddit.com/r/AskReddit/comments/os4u1w/comment/h6m6nps/",
 	],
 }

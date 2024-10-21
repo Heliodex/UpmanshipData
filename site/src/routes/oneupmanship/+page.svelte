@@ -8,7 +8,8 @@
 		userCommentCount,
 		commentsPerUser,
 		userQuotes,
-		othersCount
+		othersCount,
+		userUpvoteCount
 	} from "$lib/data"
 	import getAvatar from "$lib/avatar"
 	import Chart from "$lib/components/Chart.svelte"
@@ -35,7 +36,7 @@
 	let comments = $derived(
 		sortAsc
 			? commentsPerUser[currentUser]
-			: commentsPerUser[currentUser].slice().reverse()
+			: commentsPerUser[currentUser].toReversed()
 	)
 </script>
 
@@ -85,22 +86,20 @@
 
 {#key chartType}
 	<Chart
-		finishedLoading={() => {
-			loading = false
-		}}
+		bind:loading
 		type={chartType === "pie" ? "pie" : "bar"}
 		data={{
-			labels: chartType === "pie" ? labels.slice().reverse() : labels,
+			labels: chartType === "pie" ? labels.toReversed() : labels,
 			datasets: [
 				{
 					label: "Comments",
 					data:
 						chartType === "pie"
-							? commentData.slice().reverse()
+							? commentData.toReversed()
 							: commentData,
 					backgroundColor:
 						chartType === "pie"
-							? backgroundColours.slice().reverse()
+							? backgroundColours.toReversed()
 							: backgroundColours
 				}
 			]
@@ -120,9 +119,8 @@
 		plugins={[
 			{
 				id: "event-handler",
-				beforeEvent(chart, args) {
-					const event = args.event
-					if (!(event.type === "click" && event.native)) return
+				beforeEvent(chart, { event }) {
+					if (event.type === "click" || !event.native) return
 					const element = chart.getElementsAtEventForMode(
 						event.native,
 						"nearest",
@@ -178,6 +176,7 @@
 
 	<div class="py-4">
 		<p>{userCommentCount[currentUser]} total comments</p>
+		<p>{userUpvoteCount[currentUser]} estimated total upvotes</p>
 	</div>
 
 	<h3 class="flex gap-3 pb-4">
