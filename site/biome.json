@@ -6,10 +6,7 @@
 	"linter": {
 		"rules": {
 			"nursery": {
-				"all": true,
-				"noUndeclaredDependencies": "off",
-				"noNodejsModules": "off",
-				"noConsole": "off"
+				"all": true
 			}
 		}
 	},
@@ -34,9 +31,6 @@
 					"suspicious": {
 						"noConfusingLabels": "off",
 						"noImplicitAnyLet": "off"
-					},
-					"nursery": {
-						"noEvolvingAny": "off"
 					}
 				}
 			}
